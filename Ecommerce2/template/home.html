@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block title %}Página Inicial -
+Produtos{% endblock %}
+{% block content %}
+<h1>Nossos Produtos</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4"> {% for produto in
+    produtos %}
+    <div class="col">
+    <div class="card h-100">
+    {% if produto.image %}
+    <img src="{{ produto.image.url }}"
+    class="card-img-top" alt="{{ produto.nome }}" style="height:
+    200px; object-fit: cover;">
+    {% else %}
+    <img src="..." class="card-img-top" alt="Sem
+    imagem" style="height: 200px; object-fit: cover; background-color:
+    #eee;">
+    {% endif %}
+    <div class="card-body">
+    <h5 class="card-title">{{ produto.nome }}</h5>
+    <a href="{% url 'detalhe_produto' produto.id
+    %}" class="btn btn-primary">Ver Detalhes</a> </div>
+    </div>
+    </div>
+    {% empty %}
+    <div class="col">
+    <p>Nenhum produto cadastrado ainda.</p>
+    </div>
+    {% endfor %}
+    </div>
+    {% endblock %}
+    
